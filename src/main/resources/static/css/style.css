@@ -1,0 +1,36 @@
+h1 {
+  font-size:18pt;
+  font-weight:bold;
+  color:grey;
+}
+
+body {
+  font-size:13;
+  color:grey;
+  margin:5px 25px;
+}
+
+pre {
+  border: solid 3px #ddd;
+  padding: 10px;
+}
+
+tr {
+  margin: 5px;
+}
+
+th {
+  padding: 5px;
+  color: white;
+  background: darkgray;
+}
+
+td {
+  padding: 5px;
+  color: black;
+  background: #e0e0ff;
+}
+
+.err {
+  color: red;
+}
