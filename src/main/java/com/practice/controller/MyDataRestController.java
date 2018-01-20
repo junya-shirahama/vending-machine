@@ -1,5 +1,6 @@
 package com.practice.controller;
 
+import com.practice.bean.MySampleBean;
 import com.practice.entity.MyData;
 import com.practice.service.MyDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class MyDataRestController {
     @Autowired
     private MyDataService service;
 
+    @Autowired
+    MySampleBean bean;
+
     @RequestMapping(value = "rest")
     public List<MyData> restAll() {
         return service.getAll();
@@ -26,5 +30,10 @@ public class MyDataRestController {
     @RequestMapping(value = "/rest/{num}")
     public MyData restBy(@PathVariable int num) {
         return service.get(num);
+    }
+
+    @RequestMapping(value = "/count")
+    public int count() {
+        return bean.count();
     }
 }

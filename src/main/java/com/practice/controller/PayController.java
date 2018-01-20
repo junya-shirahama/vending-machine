@@ -1,5 +1,6 @@
 package com.practice.controller;
 
+import com.practice.bean.MyDataBean;
 import com.practice.entity.MyData;
 import com.practice.repositories.MyDataDaoImpl;
 import com.practice.repositories.MyDataRepository;
@@ -31,6 +32,9 @@ public class PayController {
 
     @Autowired
     private MyDataService service;
+
+    @Autowired
+    MyDataBean myDataBean;
 
     @PostConstruct
     public void init() {
@@ -84,12 +88,15 @@ public class PayController {
 //        return res;
 //    }
 
-//    @RequestMapping(value = "/{tax}", method = RequestMethod.GET)
-//    public ModelAndView index(@PathVariable int tax, ModelAndView mav) {
-//        mav.setViewName("index");
-//        mav.addObject("tax", tax);
-//        return mav;
-//    }
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ModelAndView indexById(@PathVariable long id, ModelAndView mav) {
+        mav.setViewName("pickup");
+        mav.addObject("title", "Pickup Page");
+        String table = "<table>" + myDataBean.getTableTagById(id) + "</table>";
+        mav.addObject("msg", "pickup data id = " + id);
+        mav.addObject("data", table);
+        return mav;
+    }
 
 //    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 //    public ModelAndView edit(@ModelAttribute MyData myData, @PathVariable int id, ModelAndView mav) {
