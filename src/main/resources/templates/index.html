@@ -28,7 +28,9 @@
     <p th:text="${msg}"></p>
     <ol id="obj"></ol>
     <table>
-        <tr><th>ID</th><th>名前</th><th>メール</th><th>年齢</th><th>メモ(tel)</th></tr>
+        <tr>
+            <th>ID</th><th>名前</th><th>メール</th><th>年齢</th><th>メモ(tel)</th>
+        </tr>
         <tr th:each="obj : ${datalist}">
             <td th:text="${obj.id}"></td>
             <td th:text="${obj.name}"></td>
@@ -36,6 +38,15 @@
             <td th:text="${obj.age}"></td>
             <td th:text="${obj.memo}"></td>
         </tr>
+        <tr><td colspan="5">
+            <table class="navi">
+                <tr>
+                    <td><div style="text-align: left;"><a th:href="${#myTLHelper.prevUrl(pagenumber)}">← Prev</a></div></td>
+                    <td><div style="text-align: center;">page</div></td>
+                    <td><div style="text-align: right;"><a th:href="${#myTLHelper.nextUrl(pagenumber)}">Next →</a></div></td>
+                </tr>
+            </table>
+        </td></tr>
     </table>
 </body>
 </html>
