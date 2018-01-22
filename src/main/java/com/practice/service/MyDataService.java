@@ -1,6 +1,10 @@
 package com.practice.service;
 
 import com.practice.entity.MyData;
+import com.practice.repositories.MyDataRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -19,6 +23,11 @@ public class MyDataService {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    private MyDataRepository repository;
+
+    private static final int PAGE_SIZE = 3;
+
     public List<MyData> getAll() {
         return (List<MyData>) entityManager.createQuery("from MyData").getResultList();
     }
@@ -35,5 +44,10 @@ public class MyDataService {
         List<MyData> list = null;
         list = (List<MyData>) entityManager.createQuery(query).getResultList();
         return list;
+    }
+
+    public Page<MyData> getMyDataInPage(Integer pageNumber) {
+        PageRequest pageRequest = new PageRequest(pageNumber - 1, PAGE_SIZE);
+        return repository.findAll(pageRequest);
     }
 }

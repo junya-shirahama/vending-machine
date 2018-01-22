@@ -7,20 +7,20 @@
     <style th:include="part :: frag_style"></style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
-    <script th:inline="javascript">
-    $(document).ready(function() {
-      const num = /*[[${param.id[0]}]]*/;
-      $.get("/rest/" + num, null, callback);
-    });
+    <!--<script th:inline="javascript">-->
+        <!--$(document).ready(function() {-->
+          <!--const num = /*[[${param.id[0]}]]*/;-->
+          <!--$.get("/rest/" + num, null, callback);-->
+        <!--});-->
 
-    function callback(result) {
-      $('#obj').append('<li>id: ' + result.id + '</li>');
-      $('#obj').append('<li>name: ' + result.name + '</li>');
-      $('#obj').append('<li>mail: ' + result.mail + '</li>');
-      $('#obj').append('<li>age: ' + result.age + '</li>');
-      $('#obj').append('<li>memo: ' + result.memo + '</li>');
-    }
-</script>
+        <!--function callback(result) {-->
+          <!--$('#obj').append('<li>id: ' + result.id + '</li>');-->
+          <!--$('#obj').append('<li>name: ' + result.name + '</li>');-->
+          <!--$('#obj').append('<li>mail: ' + result.mail + '</li>');-->
+          <!--$('#obj').append('<li>age: ' + result.age + '</li>');-->
+          <!--$('#obj').append('<li>memo: ' + result.memo + '</li>');-->
+        <!--}-->
+    <!--</script>-->
 </head>
 <body>
     <h1 th:text="#{content.title}">お金を入れてくださいでござる</h1>

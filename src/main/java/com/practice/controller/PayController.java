@@ -6,6 +6,7 @@ import com.practice.repositories.MyDataDaoImpl;
 import com.practice.repositories.MyDataRepository;
 import com.practice.service.MyDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -154,6 +155,17 @@ public class PayController {
             List<MyData> list = service.find(param);
             mav.addObject("datalist", list);
         }
+        return mav;
+    }
+
+    @RequestMapping(value = "/page/{num}", method = RequestMethod.GET)
+    public ModelAndView page(@PathVariable Integer num, ModelAndView mav) {
+        Page<MyData> page = service.getMyDataInPage(num);
+        mav.setViewName("index");
+        mav.addObject("title", "Find Page");
+        mav.addObject("msg", "MyDataのサンプルです。");
+        mav.addObject("pagenumber", num);
+        mav.addObject("datalist", page);
         return mav;
     }
 }
