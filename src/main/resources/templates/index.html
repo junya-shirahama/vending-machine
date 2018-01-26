@@ -2,51 +2,8 @@
 <html xmlns:th="http:www.thymeleaf.org">
 <head>
     <title>top page</title>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}"/>
-    <style th:include="part :: frag_style"></style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
-    <!--<script th:inline="javascript">-->
-        <!--$(document).ready(function() {-->
-          <!--const num = /*[[${param.id[0]}]]*/;-->
-          <!--$.get("/rest/" + num, null, callback);-->
-        <!--});-->
-
-        <!--function callback(result) {-->
-          <!--$('#obj').append('<li>id: ' + result.id + '</li>');-->
-          <!--$('#obj').append('<li>name: ' + result.name + '</li>');-->
-          <!--$('#obj').append('<li>mail: ' + result.mail + '</li>');-->
-          <!--$('#obj').append('<li>age: ' + result.age + '</li>');-->
-          <!--$('#obj').append('<li>memo: ' + result.memo + '</li>');-->
-        <!--}-->
-    <!--</script>-->
+    <meta charset="UTF-8" />
 </head>
 <body>
-    <h1 th:text="#{content.title}">お金を入れてくださいでござる</h1>
-    <!--<pre th:text="${data}"></pre>-->
-    <p th:text="${msg}"></p>
-    <ol id="obj"></ol>
-    <table>
-        <tr>
-            <th>ID</th><th>名前</th><th>メール</th><th>年齢</th><th>メモ(tel)</th>
-        </tr>
-        <tr th:each="obj : ${datalist}">
-            <td th:text="${obj.id}"></td>
-            <td th:text="${obj.name}"></td>
-            <td th:text="${obj.mail}"></td>
-            <td th:text="${obj.age}"></td>
-            <td th:text="${obj.memo}"></td>
-        </tr>
-        <tr><td colspan="5">
-            <table class="navi">
-                <tr>
-                    <td><div style="text-align: left;"><a th:href="${#myTLHelper.prevUrl(pagenumber)}">← Prev</a></div></td>
-                    <td><div style="text-align: center;">page</div></td>
-                    <td><div style="text-align: right;"><a th:href="${#myTLHelper.nextUrl(pagenumber)}">Next →</a></div></td>
-                </tr>
-            </table>
-        </td></tr>
-    </table>
 </body>
 </html>
