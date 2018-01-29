@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http:www.thymeleaf.org">
 <head>
-    <title>top page</title>
+    <title>vending machine</title>
     <meta charset="UTF-8" />
 </head>
 <body>
 <h1 th:text="${message}">Hello Worldでござる</h1>
-aaa
+<div>
+    <form action="" method="post">
+        <input type="radio" name="drink" id="orange" value="オレンジジュース"/>
+        <label for="orange">オレンジジュース</label>
+        <br/>
+        <input type="radio" name="drink" id="cola" value="コーラ"/>
+        <label for="cola">コーラ</label>
+        <br/>
+        <input type="radio" name="drink" id="tea" value="お茶"/>
+        <label for="tea">お茶</label>
+        <br/>
+        <input type="radio" name="drink" id="coffee" value="コーヒー"/>
+        <label for="coffee">コーヒー</label>
+        <br/>
+        <input type="radio" name="drink" id="water" value="水"/>
+        <label for="water">水</label>
+        <br/>
+        <input type="text" name="money" placeholder="お金を入力してください。"/>
+        <input type="submit" value="購入"/>
+    </form>
+</div>
 </body>
 </html>
