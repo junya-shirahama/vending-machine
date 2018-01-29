@@ -1,41 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http:www.thymeleaf.org">
 <head>
-    <title>top page</title>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}"/>
-    <style th:include="part :: frag_style"></style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
-    <!--<script th:inline="javascript">-->
-        <!--$(document).ready(function() {-->
-          <!--const num = /*[[${param.id[0]}]]*/;-->
-          <!--$.get("/rest/" + num, null, callback);-->
-        <!--});-->
-
-        <!--function callback(result) {-->
-          <!--$('#obj').append('<li>id: ' + result.id + '</li>');-->
-          <!--$('#obj').append('<li>name: ' + result.name + '</li>');-->
-          <!--$('#obj').append('<li>mail: ' + result.mail + '</li>');-->
-          <!--$('#obj').append('<li>age: ' + result.age + '</li>');-->
-          <!--$('#obj').append('<li>memo: ' + result.memo + '</li>');-->
-        <!--}-->
-    <!--</script>-->
+    <title>vending machine</title>
+    <meta charset="UTF-8" />
 </head>
 <body>
-    <h1 th:text="#{content.title}">お金を入れてくださいでござる</h1>
-    <!--<pre th:text="${data}"></pre>-->
-    <p th:text="${msg}"></p>
-    <ol id="obj"></ol>
-    <table>
-        <tr><th>ID</th><th>名前</th><th>メール</th><th>年齢</th><th>メモ(tel)</th></tr>
-        <tr th:each="obj : ${datalist}">
-            <td th:text="${obj.id}"></td>
-            <td th:text="${obj.name}"></td>
-            <td th:text="${obj.mail}"></td>
-            <td th:text="${obj.age}"></td>
-            <td th:text="${obj.memo}"></td>
-        </tr>
-    </table>
+<h1 th:text="${message}">Hello Worldでござる</h1>
+<div>
+    <form action="" method="post">
+        <input type="radio" name="drink" id="orange" value="オレンジジュース"/>
+        <label for="orange">オレンジジュース</label>
+        <br/>
+        <input type="radio" name="drink" id="cola" value="コーラ"/>
+        <label for="cola">コーラ</label>
+        <br/>
+        <input type="radio" name="drink" id="tea" value="お茶"/>
+        <label for="tea">お茶</label>
+        <br/>
+        <input type="radio" name="drink" id="coffee" value="コーヒー"/>
+        <label for="coffee">コーヒー</label>
+        <br/>
+        <input type="radio" name="drink" id="water" value="水"/>
+        <label for="water">水</label>
+        <br/>
+        <input type="text" name="money" placeholder="お金を入力してください。"/>
+        <input type="submit" value="購入"/>
+    </form>
+</div>
 </body>
 </html>
