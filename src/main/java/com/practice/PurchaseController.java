@@ -2,6 +2,9 @@ package com.practice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,10 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by JunyaShirahama on 2018/01/26.
  */
 @Controller
-public class PayController {
+public class PurchaseController {
 
     @Autowired
-    private PayService service;
+    private PurchaseService service;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mav) {
@@ -24,13 +27,18 @@ public class PayController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ModelAndView purchase(@RequestParam("drink")String drink,
-                                 @RequestParam("money")int money,
+    public ModelAndView purchase(@ModelAttribute("purchaseForm") @Validated PurchaseForm form,
+                                 BindingResult result,
                                  ModelAndView mav) {
+        if (result.hasErrors()) {
+            mav.setViewName("redirect:/");
+            return mav;
+        }
         mav.setViewName("purchase");
         mav.addObject("message", "ありがとうございました！");
-        int change = service.calculateChange(money);
+        int change = service.calculateChange(form.getMoney());
         StringBuilder builder = new StringBuilder();
+        String drink = form.getDrink();
         if (change > 0) {
             builder.append(drink + "と" + change +"円のお釣りです。");
         } else if (change == 0) {

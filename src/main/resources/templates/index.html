@@ -8,6 +8,9 @@
 <h1 th:text="${message}">Hello Worldでござる</h1>
 <div>
     <form action="" method="post">
+        <ul>
+            <li th:each="error : ${#fields.detailedErrors()}" th:text="${error.message}" />
+        </ul>
         <input type="radio" name="drink" id="orange" value="オレンジジュース"/>
         <label for="orange">オレンジジュース</label>
         <br/>
