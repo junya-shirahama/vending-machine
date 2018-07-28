@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:13306/vending_machine
+    username: root
+    password: secret
+    initialization-mode: always
+  jpa:
+    database: mysql
+    hibernate.ddl-auto: update
+  thymeleaf.cache: false
