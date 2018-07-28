@@ -35,7 +35,7 @@ public class PurchaseController {
             return mav;
         }
         mav.setViewName("purchase");
-        int change = service.calculateChange(form.getMoney());
+        int change = service.calculateChange(form.getSumYen());
         StringBuilder builder = new StringBuilder();
         String drink = form.getDrink();
         if (change > 0) {
