@@ -11,12 +11,12 @@
 <div>
     <form class="form-signin" th:action="@{/doLogin}" method="post">
         <div class="form-label-group">
-            <input type="username" name="username" id="inputUserName" class="form-control" placeholder="ユーザーネーム">
+            <input type="username" name="username" id="inputUserName" class="form-control" placeholder="ユーザーネーム" required>
             <label for="inputUserName">ユーザーネーム</label>
         </div>
 
         <div class="form-label-group">
-            <input type="password" name="username" id="inputPassword" class="form-control" placeholder="パスワード" required>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="パスワード" required>
             <label for="inputPassword">パスワード</label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">サインイン</button>

@@ -6,8 +6,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 /**
  * @author JunyaShirahama
  */
@@ -19,10 +17,8 @@ public class LoginUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> optionalUser = userRepository.findById(username);
-        if (optionalUser.isPresent()) {
-            return new LoginUserDetails(optionalUser.get());
-        }
-        throw new UsernameNotFoundException("The requested user is not found.");
+        User user = userRepository.findById(username)
+                .orElseThrow(() -> new UsernameNotFoundException("The requested user is not found."));
+        return new LoginUserDetails(user);
     }
 }

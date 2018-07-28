@@ -1,11 +1,9 @@
 package com.practice;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -34,12 +32,12 @@ public class LoginController {
     }
 
     @RequestMapping(value = "signup", method = RequestMethod.POST)
-    public ModelAndView doSignup(@ModelAttribute("loginForm") @Validated LoginForm form, @AuthenticationPrincipal LoginUserDetails userDetails, ModelAndView mav) {
+    public ModelAndView doSignup(@Validated LoginForm form, ModelAndView mav) {
         String encodedPassword = passwordEncoder.encode(form.getPassword());
         User user = new User();
         user.setUsername(form.getUsername());
         user.setPassword(encodedPassword);
-        userRepository.save(user);
+        userService.create(user);
         mav.setViewName("redirect:/login");
         return mav;
     }

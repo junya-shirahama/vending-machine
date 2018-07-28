@@ -23,8 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-//        web.ignoring()
-//                .antMatchers("/templates/**");
+        web.ignoring()
+                .antMatchers("/resources/**");
     }
 
     @Override
@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Configuration
-    static class AuthenticationConfiguration extends GlobalAuthenticationConfigurerAdapter {
+    protected static class AuthenticationConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
         @Autowired
         private UserDetailsService userDetailsService;
