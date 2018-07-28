@@ -7,7 +7,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -22,6 +21,7 @@ public class PurchaseController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mav) {
         mav.setViewName("index");
+//        mav.setViewName("dummy");
         mav.addObject("message", "いらっしゃいませ！");
         return mav;
     }
@@ -35,15 +35,16 @@ public class PurchaseController {
             return mav;
         }
         mav.setViewName("purchase");
-        mav.addObject("message", "ありがとうございました！");
         int change = service.calculateChange(form.getMoney());
         StringBuilder builder = new StringBuilder();
         String drink = form.getDrink();
         if (change > 0) {
+            mav.addObject("message", "ありがとうございました！");
             builder.append(drink + "と" + change +"円のお釣りです。");
         } else if (change == 0) {
             builder.append(drink + "になります。");
         } else {
+            mav.addObject("message", "もう一度トライ！");
             builder.append("お金が" + Math.abs(change) + "円足りません。");
         }
         builder.toString();
