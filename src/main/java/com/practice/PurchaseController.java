@@ -26,6 +26,7 @@ public class PurchaseController {
     public ModelAndView index(ModelAndView mav) {
         List<Drink> drinkList = drinkRepository.findAll();
         System.out.println(drinkList.get(0).getDrinkName());
+
         mav.setViewName("index");
 //        mav.setViewName("dummy");
         mav.addObject("message", "いらっしゃいませ！");
