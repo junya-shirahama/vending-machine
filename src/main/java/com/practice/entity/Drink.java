@@ -1,4 +1,4 @@
-package com.practice;
+package com.practice.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,13 +11,15 @@ import javax.persistence.Table;
  * @author JunyaShirahama
  */
 @Entity
-@Table(name = "user")
+@Table(name = "drink")
 @Getter
 @Setter
-public class User {
+public class Drink {
 
     @Id
-    private String username;
+    private Integer drinkId;
 
-    private String password;
+    private String drinkName;
+
+    private Integer price;
 }

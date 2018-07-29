@@ -1,4 +1,4 @@
-package com.practice;
+package com.practice.form;
 
 import lombok.Getter;
 import lombok.Setter;

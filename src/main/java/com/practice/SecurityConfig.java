@@ -29,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable(); // TODO: 2018/07/29 CSRF対策を無効化している 
         http.authorizeRequests()
                 .antMatchers("/login", "/signup")
                 .permitAll()
@@ -43,6 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout**"))
                 .logoutSuccessUrl("/login");
+//        http.exceptionHandling()
+//                .accessDeniedPage("/accessDeniedError");
     }
 
     @Configuration
