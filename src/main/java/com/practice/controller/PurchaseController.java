@@ -1,6 +1,9 @@
 package com.practice.controller;
 
+import com.practice.DrinkBean;
+import com.practice.entity.Drink;
 import com.practice.form.PurchaseForm;
+import com.practice.service.DrinkService;
 import com.practice.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,13 +21,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class PurchaseController {
 
     @Autowired
-    private PurchaseService service;
+    private PurchaseService purchaseService;
+    @Autowired
+    private DrinkService drinkService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mav) {
-        mav.setViewName("index");
-//        mav.setViewName("dummy");
         mav.addObject("message", "いらっしゃいませ！");
+        DrinkBean drinkBean = purchaseService.getPurchasableDrinkList();
+        mav.addObject("drinkList", drinkBean.getDrinkList());
+        mav.setViewName("index");
         return mav;
     }
 
@@ -37,14 +43,15 @@ public class PurchaseController {
             return mav;
         }
         mav.setViewName("purchase");
-        int change = service.calculateChange(form.getSumYen());
+        Integer drinkId = Integer.valueOf(form.getDrink());
+        int change = purchaseService.calculateChange(drinkId.intValue(), form.getSumYen());
+        Drink drink = drinkService.getDrinkById(drinkId);
         StringBuilder builder = new StringBuilder();
-        String drink = form.getDrink();
         if (change > 0) {
             mav.addObject("message", "ありがとうございました！");
-            builder.append(drink + "と" + change +"円のお釣りです。");
+            builder.append(drink.getDrinkName() + "と" + change +"円のお釣りです。");
         } else if (change == 0) {
-            builder.append(drink + "になります。");
+            builder.append(drink.getDrinkName() + "になります。");
         } else {
             mav.addObject("message", "もう一度トライ！");
             builder.append("お金が" + Math.abs(change) + "円足りません。");

@@ -9,10 +9,18 @@
 <body>
 <h1 th:text="${message}">いろんな飲み物</h1>
 <div>
+    <form action="drink" method="post">
+        飲み物の名前<input type="text" name="drinkName" placeholder="飲み物の名前を入力してください。"/>
+        <br/>
+        飲み物の価格<input type="text" name="price" placeholder="飲み物の価格を入力してください。"/>
+        <br/>
+        <input type="submit" value="追加">
+    </form>
     <tr th:each="drink:${drinkList}">
         <td th:text="${drink.drinkId}">100</td>
         <td th:text="${drink.drinkName}">抹茶</td>
         <td th:text="${drink.price}">1億円</td>
+        <br/>
     </tr>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

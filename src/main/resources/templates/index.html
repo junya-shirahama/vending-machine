@@ -13,21 +13,25 @@
         <ul>
             <li th:each="error : ${#fields.detailedErrors()}" th:text="${error.message}" />
         </ul>
-        <input type="radio" name="drink" id="orange" value="オレンジジュース"/>
-        <label for="orange">オレンジジュース</label>
-        <br/>
-        <input type="radio" name="drink" id="cola" value="コーラ"/>
-        <label for="cola">コーラ</label>
-        <br/>
-        <input type="radio" name="drink" id="tea" value="お茶"/>
-        <label for="tea">お茶</label>
-        <br/>
-        <input type="radio" name="drink" id="coffee" value="コーヒー"/>
-        <label for="coffee">コーヒー</label>
-        <br/>
-        <input type="radio" name="drink" id="water" value="水"/>
-        <label for="water">水</label>
-        <br/>
+        <!--<input type="radio" name="drink" id="orange" value="オレンジジュース"/>-->
+        <!--<label for="orange">オレンジジュース</label>-->
+        <!--<br/>-->
+        <!--<input type="radio" name="drink" id="cola" value="コーラ"/>-->
+        <!--<label for="cola">コーラ</label>-->
+        <!--<br/>-->
+        <!--<input type="radio" name="drink" id="tea" value="お茶"/>-->
+        <!--<label for="tea">お茶</label>-->
+        <!--<br/>-->
+        <!--<input type="radio" name="drink" id="coffee" value="コーヒー"/>-->
+        <!--<label for="coffee">コーヒー</label>-->
+        <!--<br/>-->
+        <!--<input type="radio" name="drink" id="water" value="水"/>-->
+        <!--<label for="water">水</label>-->
+        <!--<br/>-->
+        <div th:each="drink:${drinkList}">
+            <input type="radio" name="drink" th:id="${drink.drinkName}" th:value="${drink.drinkId}"/>
+            <label th:for="${drink.drinkName}" th:text="${drink.drinkName}">おれんじ</label>
+        </div>
         10円玉<input type="text" size="1" name="yen10"/>枚<br/>
         50円玉<input type="text" size="1" name="yen50"/>枚<br/>
         100円玉<input type="text" size="1" name="yen100"/>枚<br/>
