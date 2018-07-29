@@ -1,5 +1,7 @@
-package com.practice;
+package com.practice.controller;
 
+import com.practice.form.PurchaseForm;
+import com.practice.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -9,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 /**
  * Created by JunyaShirahama on 2018/01/26.
  */
@@ -19,13 +19,9 @@ public class PurchaseController {
 
     @Autowired
     private PurchaseService service;
-    @Autowired
-    private DrinkRepository drinkRepository;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView index(ModelAndView mav) {
-        List<Drink> drinkList = drinkRepository.findAll();
-        System.out.println(drinkList.get(0).getDrinkName());
         mav.setViewName("index");
 //        mav.setViewName("dummy");
         mav.addObject("message", "いらっしゃいませ！");
