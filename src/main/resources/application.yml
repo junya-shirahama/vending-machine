@@ -3,7 +3,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:13306/vending_machine
     username: root
-    password: secret
+    password: password
     initialization-mode: always
   jpa:
     database: mysql
